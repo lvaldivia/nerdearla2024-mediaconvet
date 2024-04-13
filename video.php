@@ -40,15 +40,15 @@ $mediaConvertClient = new MediaConvertClient([
     'endpoint' => $single_endpoint_url
 ]);
 //VIDEO
-$video_name = "bbb_sunflower_1080p_60fps_normal.mp4";
+$video_name = "video02.mp4";
 //JSON Tem,plate
 $jobSetting  = json_decode(file_get_contents("job.json"), true);
 
-$origin = sprintf('%s/original/%s/%s',$bucket,$video_name);
+$origin = sprintf('%s/original/%s',$bucket,$video_name);
 $FileInput = sprintf('s3://%s',$origin);
 
 $jobSetting["Inputs"][0]["FileInput"] = $FileInput;
-$destination = sprintf('s3://%s/%s/%d',$bucket,$folder,time());
+$destination = sprintf('s3://%s/%s/%d/playlist',$bucket,$folder,time());
 $jobSetting["OutputGroups"][0]["OutputGroupSettings"]["HlsGroupSettings"]["Destination"] = $destination;
 
 try {
