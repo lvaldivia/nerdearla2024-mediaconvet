@@ -1,0 +1,146 @@
+{
+    "TimecodeConfig": {
+      "Source": "ZEROBASED"
+    },
+    "OutputGroups": [
+      {
+        "CustomName": "HLS",
+        "Name": "Apple HLS",
+        "Outputs": [
+          {
+            "ContainerSettings": {
+              "Container": "M3U8",
+              "M3u8Settings": {}
+            },
+            "VideoDescription": {
+              "Width": 640,
+              "Height": 360,
+              "CodecSettings": {
+                "Codec": "H_264",
+                "H264Settings": {
+                  "MaxBitrate": 1000000,
+                  "RateControlMode": "QVBR",
+                  "SceneChangeDetect": "TRANSITION_DETECTION"
+                }
+              }
+            },
+            "AudioDescriptions": [
+              {
+                "CodecSettings": {
+                  "Codec": "AAC",
+                  "AacSettings": {
+                    "Bitrate": 96000,
+                    "CodingMode": "CODING_MODE_2_0",
+                    "SampleRate": 48000
+                  }
+                }
+              }
+            ],
+            "OutputSettings": {
+              "HlsSettings": {
+                "SegmentModifier": "$dt$"
+              }
+            },
+            "NameModifier": "_360"
+          },
+          {
+            "ContainerSettings": {
+              "Container": "M3U8",
+              "M3u8Settings": {}
+            },
+            "VideoDescription": {
+              "Width": 960,
+              "Height": 540,
+              "CodecSettings": {
+                "Codec": "H_264",
+                "H264Settings": {
+                  "MaxBitrate": 2000000,
+                  "RateControlMode": "QVBR",
+                  "SceneChangeDetect": "TRANSITION_DETECTION"
+                }
+              }
+            },
+            "AudioDescriptions": [
+              {
+                "CodecSettings": {
+                  "Codec": "AAC",
+                  "AacSettings": {
+                    "Bitrate": 96000,
+                    "CodingMode": "CODING_MODE_2_0",
+                    "SampleRate": 48000
+                  }
+                }
+              }
+            ],
+            "OutputSettings": {
+              "HlsSettings": {
+                "SegmentModifier": "$dt$"
+              }
+            },
+            "NameModifier": "_540"
+          },
+          {
+            "ContainerSettings": {
+              "Container": "M3U8",
+              "M3u8Settings": {}
+            },
+            "VideoDescription": {
+              "Width": 1280,
+              "Height": 720,
+              "CodecSettings": {
+                "Codec": "H_264",
+                "H264Settings": {
+                  "MaxBitrate": 3000000,
+                  "RateControlMode": "QVBR",
+                  "SceneChangeDetect": "TRANSITION_DETECTION"
+                }
+              }
+            },
+            "AudioDescriptions": [
+              {
+                "CodecSettings": {
+                  "Codec": "AAC",
+                  "AacSettings": {
+                    "Bitrate": 96000,
+                    "CodingMode": "CODING_MODE_2_0",
+                    "SampleRate": 48000
+                  }
+                }
+              }
+            ],
+            "OutputSettings": {
+              "HlsSettings": {}
+            },
+            "NameModifier": "_720"
+          }
+        ],
+        "OutputGroupSettings": {
+          "Type": "HLS_GROUP_SETTINGS",
+          "HlsGroupSettings": {
+            "SegmentLength": 10,
+            "Destination": "s3://masuno/Vales/",
+            "DestinationSettings": {
+              "S3Settings": {
+                "AccessControl": {
+                  "CannedAcl": "PUBLIC_READ"
+                }
+              }
+            },
+            "MinSegmentLength": 0
+          }
+        }
+      }
+    ],
+    "Inputs": [
+      {
+        "AudioSelectors": {
+          "Audio Selector 1": {
+            "DefaultSelection": "DEFAULT"
+          }
+        },
+        "VideoSelector": {},
+        "TimecodeSource": "ZEROBASED",
+        "FileInput" : ""
+      }
+    ]
+}
